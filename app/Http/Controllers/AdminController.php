@@ -18,7 +18,7 @@ class AdminController extends Controller
             // dd(Auth::guard('admin')->check());
             // $request->session()->regenerate();
             // $this->clearLoginAttempts($request);
-            return redirect()->intended('admin/dashboard');
+            return response(200);
         }else{
             dd("wrong");
         }
