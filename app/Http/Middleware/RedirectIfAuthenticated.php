@@ -27,6 +27,7 @@ class RedirectIfAuthenticated
                     //user was authenticated with admin guard.
                     return redirect()->route('admin.home');
                 }
+                // dd("die");
                 return redirect(RouteServiceProvider::HOME);
             }
         }
