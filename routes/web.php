@@ -27,3 +27,6 @@ Route::post('/admin/login', [App\Http\Controllers\AdminController::class, 'login
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->middleware('auth:admin')->name('admin-dashboard');
 // Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin-dashboard');
 Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'showLogin'])->name('admin-showLogin');
+
+Route::middleware('auth:web')->get('/seminar',[App\Http\Controllers\SeminarController::class, 'getSeminarMahasiswa']);
+
