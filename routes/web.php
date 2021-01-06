@@ -17,16 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Mahasiswa login
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Admin routes
 Route::post('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin-login');
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->middleware('auth:admin')->name('admin-dashboard');
-// Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin-dashboard');
 Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'showLogin'])->name('admin-showLogin');
 
+
+//Mahasiswa routes
+Auth::routes();
 Route::middleware('auth:web')->get('/seminar',[App\Http\Controllers\SeminarController::class, 'getSeminarMahasiswa']);
+Route::middleware('auth:web')->post('/seminar/daftar',[App\Http\Controllers\SeminarController::class, 'daftarSeminar']);
 

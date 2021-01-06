@@ -66,7 +66,9 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => storage_path('app/public'),//public path storage is public/storage
+        //storage path app public is storage/app/public
+        //storage_path function seems to point to the storage folder
     ],
 
 ];
