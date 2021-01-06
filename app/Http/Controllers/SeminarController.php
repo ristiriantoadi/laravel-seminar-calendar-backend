@@ -14,16 +14,39 @@ class SeminarController extends Controller
         return Seminar::with('user')->get();
     }
 
+    public function statusSeminarProposal(Request $request)
+    {
+        $proposalSeminar = ProposalSeminar::where('user_id',Auth::user()->id)->get();
+        if(count($proposalSeminar) == 0){
+            return -1; //no proposal
+        }else{
+            if(strcmp($proposalSeminar[0]->status_proposal,"menunggu") == 0){
+                return 0;//proposal menunggu
+            }else if(strcmp($proposalSeminar[0]->status_proposal,"diterima") == 0){
+                return 1;//proposal diterima
+            }else{
+                return 2;//proposal ditolak
+            }
+        }
+    
+        
+    }
+
     public function daftarSeminar(Request $request){
 
-        $proposalSeminar = new ProposalSeminar;
+        //check if he already have fucking proposal
+        $proposalSeminar = ProposalSeminar::where('user_id',Auth::user()->id)->get();
+        if(count($proposalSeminar) == 0){
+            $proposalSeminar = new ProposalSeminar; 
+        }else{
+            $proposalSeminar = ProposalSeminar::find($proposalSeminar[0]->id);
+        }    
         $proposalSeminar->judul = $request->judul;
         $proposalSeminar->pembimbing_satu = $request->dosen_pembimbing_1;
         $proposalSeminar->pembimbing_dua = $request->dosen_pembimbing_2;
         $proposalSeminar->no_hp = $request->no_hp;
         $proposalSeminar->status_proposal = 'menunggu';
         $proposalSeminar->user_id = Auth::user()->id;
-        // $post->content = $validatedData['content'];
         $proposalSeminar->save();
 
         //uploading file

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ProposalSeminar;
 
 class AdminController extends Controller
 {
@@ -33,4 +34,13 @@ class AdminController extends Controller
     {
         return view('admin.login');
     }
+
+    public function getProposalSeminar(Request $request)
+    {
+        // return view('admin.login');
+        return ProposalSeminar::with('user')->where('status_proposal','menunggu')->get();
+        // return ProposalSeminar::where('status_proposal','menunggu')->get();
+    }
+
+    
 }
