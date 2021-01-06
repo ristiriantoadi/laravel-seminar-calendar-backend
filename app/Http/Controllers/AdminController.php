@@ -42,5 +42,19 @@ class AdminController extends Controller
         // return ProposalSeminar::where('status_proposal','menunggu')->get();
     }
 
+    public function tolakProposalSeminar(Request $request)
+    {
+        // return view('admin.login');
+        // error_log($request->id);
+
+        // error_log("Id Proposal Seminar: ".$request->id);
+        // return ProposalSeminar::with('user')->where('status_proposal','menunggu')->get();
+        // return ProposalSeminar::where('status_proposal','menunggu')->get();
+
+        $proposalSeminar = ProposalSeminar::find($request->id);
+        $proposalSeminar->status_proposal="ditolak";
+        $proposalSeminar->save();
+    }
+
     
 }
