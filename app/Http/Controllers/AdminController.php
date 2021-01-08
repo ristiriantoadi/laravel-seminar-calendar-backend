@@ -59,6 +59,9 @@ class AdminController extends Controller
 
     public function tambahSeminar(Request $request)
     {
+        // error_log("Waktu: ".$request->waktu);
+        // error_log("date: ".$request->tanggal);
+        // exit();
         $seminar = new Seminar;
         $seminar->judul = $request->judul;
         $seminar->pembimbing_satu = $request->pembimbing_satu;
@@ -66,13 +69,10 @@ class AdminController extends Controller
         $seminar->penguji_satu = $request->penguji_satu;
         $seminar->penguji_dua = $request->penguji_dua;
         $seminar->penguji_tiga = $request->penguji_tiga;
-        $seminar->tanggal_dan_waktu = '2021-01-05';
+        // $seminar->tanggal_dan_waktu = '2021-01-05 14:00:00';
+        $seminar->tanggal_dan_waktu = $request->tanggal." ".$request->waktu; 
         $seminar->user_id = $request->user_id;
         $seminar->save();
-        // $post->title = "yes man"
-        // $post->author = "ristirianto adi"
-        // $post->content = "fjskdjskdjkdj"
-        // $post->save()
     }
 
     

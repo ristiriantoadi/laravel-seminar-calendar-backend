@@ -27,6 +27,8 @@ Route::get('/admin/proposal_seminar', [App\Http\Controllers\AdminController::cla
 Route::post('/admin/proposal_seminar/tolak', [App\Http\Controllers\AdminController::class, 'tolakProposalSeminar'])->middleware('auth:admin')->name('admin-tolak-proposal-seminar');
 Route::post('/admin/proposal_seminar/terima', [App\Http\Controllers\AdminController::class, 'terimaProposalSeminar'])->middleware('auth:admin')->name('admin-terima-proposal-seminar');
 Route::post('/admin/seminar/tambah', [App\Http\Controllers\AdminController::class, 'tambahSeminar'])->middleware('auth:admin')->name('admin-terima-proposal-seminar');
+Route::middleware('auth:admin')->get('admin/seminar',[App\Http\Controllers\SeminarController::class, 'getSeminarMahasiswa']);
+
 
 
 //Mahasiswa routes

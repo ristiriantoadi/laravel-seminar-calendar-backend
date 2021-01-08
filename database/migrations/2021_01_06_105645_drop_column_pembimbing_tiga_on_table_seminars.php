@@ -14,7 +14,11 @@ class DropColumnPembimbingTigaOnTableSeminars extends Migration
     public function up()
     {
         Schema::table('seminars', function($table){
-            $table->dropColumn('pembimbing_tiga');
+            
+            if (Schema::hasColumn('seminars','pembimbing_tiga')){
+                //
+                $table->dropColumn('pembimbing_tiga');    
+            }
         });
     }
 
